@@ -1,0 +1,26 @@
+.production:
+  stage: deploy
+  script:
+    - export PRODUCTION_IMAGE=$PROD_IMG
+    - docker-compose pull
+    - docker-compose up -d --build
+  only:
+    - master
+  when: manual
+
+deploy:
+  extends: .production
+  tags:
+    - deploy
+
+deploy-staging:
+  stage: deploy
+  script:
+    - export PROD_STAG_IMG=$PROD_STAG_IMG
+    - export STAG_STAG_IMG=$STAG_STAG_IMG
+    - docker-compose -f ./docker/docker-compose-staging.yml up -d --build
+  only:
+    - develop
+  when: manual
+  tags:
+    - deploy

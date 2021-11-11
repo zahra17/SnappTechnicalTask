@@ -1,0 +1,8 @@
+module.exports = new Set()
+  .add({pattern: '/[fake]', page: 'login'})
+  .add({pattern: '/rules', page: 'rules'})
+  .add({pattern: '/faq', page: 'faq'})
+  .add({pattern: '/privacy-policy', page: 'privacy-policy'})
+  .add({pattern: '/about', page: 'about'})
+  .add({pattern: '/app', page: 'app'})
+  .add({pattern: '/down-time', page: 'down-time'})

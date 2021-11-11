@@ -1,0 +1,38 @@
+test-type-checking:
+  stage: test
+  image: $BASE_IMG
+  before_script:
+    - shopt -s dotglob
+    - mv * /app
+    - cd /app
+  script:
+    - yarn install
+    - yarn test
+    - yarn build
+  only:
+    - merge_requests
+  when: manual
+  except:
+    - master
+    - develop
+  tags:
+    - docker
+
+validation:
+  stage: test
+  image: $BASE_IMG
+  before_script:
+    - shopt -s dotglob
+    - mv * /app
+    - cd /app
+  when: manual
+  script:
+    - yarn install
+    - yarn prettier
+    - yarn lint
+    - yarn test
+  only:
+    - develop
+    - master
+  tags:
+    - docker

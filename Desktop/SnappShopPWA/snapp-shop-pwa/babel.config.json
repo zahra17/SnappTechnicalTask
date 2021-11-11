@@ -1,0 +1,46 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-env": {}
+      }
+    ]
+  ],
+  "plugins": [
+    ["styled-components", {"ssr": true, "displayName": true}],
+    [
+      "module-resolver",
+      {
+        "root": "./src",
+        "alias": {
+          "@assets": "./src/assets",
+          "@api": "./src/api",
+          "@i18n": "./src/scripts/i18n",
+          "@root": "./src/root",
+          "@styles": "./src/styles",
+          "@redux": "./src/redux",
+          "@slices": "./src/redux/slices",
+          "@hooks": "./src/hooks",
+          "@utils": "./src/utils",
+          "@schema": "./src/types/schema",
+          "@contexts": "./src/contexts",
+          "@configs": "./src/app.config",
+          "@components": "./src/components",
+          "@extensions": "./src/scripts/extensions",
+          "~menu": "./src/sections/menu",
+          "~order": "./src/sections/order",
+          "~search": "./src/sections/search",
+          "~growth": "./src/sections/growth",
+          "@jest-provider": "./src/root/JestProvider"
+        },
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".es", ".es6", ".mjs"]
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [["@babel/preset-env", {"modules": false}], "next/babel"]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  shop-prod-stag:
+    container_name: shop-prod-stag
+    image: ${PROD_STAG_IMG}
+    restart: always
+    ports:
+      - 3083:80
+  shop-stag-stag:
+    container_name: shop-stag-stag
+    image: ${STAG_STAG_IMG}
+    restart: always
+    ports:
+      - 3084:80

@@ -1,0 +1,7 @@
+*
+
+!.gitignore
+!_app.tsx
+!_document.tsx
+!_error.tsx
+!404.tsx

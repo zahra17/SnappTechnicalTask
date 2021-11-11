@@ -1,0 +1,19 @@
+style:
+  stage: style
+  image: $BASE_IMG
+  before_script:
+    - shopt -s dotglob
+    - mv * /app
+    - cd /app
+  script:
+    - yarn install
+    - yarn prettier
+    - yarn lint
+  only:
+    - merge_requests
+  when: manual
+  except:
+    - master
+    - develop
+  tags:
+    - docker

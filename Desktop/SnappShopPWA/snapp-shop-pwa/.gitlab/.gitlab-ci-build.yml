@@ -1,0 +1,38 @@
+build-production:
+  stage: build
+  script:
+    - cp $ENV_PROD $CI_PROJECT_DIR/.env
+    - docker build --build-arg BASE=$BASE_IMG -t $PROD_IMG -f $DOCKERFILE .
+    - docker tag $PROD_IMG $CI_REGISTRY_IMAGE:production-latest
+    - docker push $PROD_IMG
+    - docker push $CI_REGISTRY_IMAGE:production-latest
+  when: manual
+  only:
+    - master
+  tags:
+    - build
+
+build-staging:
+  stage: build
+  script:
+    - cp $ENV_PROD_STAG $CI_PROJECT_DIR/.env
+    - docker build --build-arg BASE=$BASE_IMG -t $PROD_STAG_IMG -f $DOCKERFILE .
+    - cp $ENV_STAG_STAG $CI_PROJECT_DIR/.env
+    - docker build --build-arg BASE=$BASE_IMG -t $STAG_STAG_IMG -f $DOCKERFILE .
+  when: manual
+  only:
+    - develop
+  tags:
+    - build
+
+build-base:
+  stage: build
+  script:
+    - docker build -t $BASE_IMG -f $DOCKERFILE_BASE .
+    - docker push $BASE_IMG
+  when: manual
+  only:
+    - develop
+    - master
+  tags:
+    - build

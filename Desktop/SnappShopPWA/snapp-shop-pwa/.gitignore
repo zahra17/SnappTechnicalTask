@@ -1,0 +1,49 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# Dependencies
+node_modules/
+
+# environment file
+.env
+
+# Cypress generated files
+cypress/videos
+cypress/downloads
+cypress/screenshots
+
+# only use yarn
+package-lock.json
+
+# Compiled output
+build
+
+# Runtime data
+database.sqlite
+
+# Test coverage
+coverage
+
+# Storybook build files
+storybook-static
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Editors and IDEs
+.idea
+# .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Misc
+.DS_Store
+
+# custom
+.next
+out/
+.eslintcache

@@ -1,0 +1,28 @@
+stages:
+  - style
+  - test
+  - build
+  - deploy
+  - review
+  - destroy
+
+variables:
+  BASE_IMG: '$CI_REGISTRY_IMAGE:base'
+  PROD_IMG: '$CI_REGISTRY_IMAGE:production-$CI_COMMIT_SHORT_SHA'
+  REVIEW_IMG: '$CI_REGISTRY_IMAGE:review-$CI_COMMIT_SHORT_SHA'
+  PROD_STAG_IMG: '$CI_REGISTRY_IMAGE:prod-stag-$CI_COMMIT_SHORT_SHA'
+  STAG_STAG_IMG: '$CI_REGISTRY_IMAGE:stag-stag-$CI_COMMIT_SHORT_SHA'
+  DOCKERFILE: './docker/Dockerfile'
+  DOCKERFILE_BASE: './docker/Dockerfile-base'
+  ENV_PROD: '/env/shop/.env.shop'
+  ENV_PROD_STAG: '/env/shop/.env.shop.prod-stag'
+  ENV_STAG_STAG: '/env/shop/.env.shop.stag-stag'
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+include:
+  - '.gitlab/.gitlab-ci-style.yml'
+  - '.gitlab/.gitlab-ci-test.yml'
+  - '.gitlab/.gitlab-ci-build.yml'
+  - '.gitlab/.gitlab-ci-deploy.yml'

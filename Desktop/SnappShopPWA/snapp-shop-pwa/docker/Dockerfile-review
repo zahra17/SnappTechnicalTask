@@ -1,0 +1,22 @@
+ARG BASE
+FROM ${BASE}
+
+LABEL build="review"
+
+WORKDIR /app
+
+# Copying source files
+COPY . .
+
+# Installing dependencies
+RUN yarn
+
+# Building app
+# RUN npx browserslist --update-db
+RUN yarn build
+
+# Running the app
+CMD [ "yarn" , "start" ]
+
+# expose port
+EXPOSE 3004
