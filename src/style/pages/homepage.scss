@@ -1,0 +1,25 @@
+@import 'src/style/public/global';
+%childWidth {
+    width: 400px;
+    max-width: calc(100% - 60px);
+}
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+
+    .wrapper__nextBtn--pink {
+        @extend %childWidth;
+        padding: 12px;
+        font-family: $customFont;
+        font-size: 18px;
+        text-align: center;
+        color: $pink;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+}

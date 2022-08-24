@@ -1,0 +1,173 @@
+@import 'src/style/public/global';
+.wrapper-list{
+    height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+    direction: rtl;
+    font-family: IRANSans;
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    // loader
+    .list-container__loader {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        overflow: hidden;
+        background-color: $pink_lighter;
+        
+        .loader-bar {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loader-bar::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            background-color:$pink_light;
+            animation: indeterminate_first 1.5s infinite ease-out;
+        }
+        
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            background-color: $pink_light;
+            animation: indeterminate_second 1.5s infinite ease-in;
+        }
+        
+        @keyframes indeterminate_first {
+            0% {
+                left: -100%;
+                width: 100%;
+            }
+            100% {
+                left: 100%;
+                width: 10%;
+            }
+        }
+        
+        @keyframes indeterminate_second {
+            0% {
+                left: -150%;
+                width: 100%;
+            }
+            100% {
+                left: 100%;
+                width: 10%;
+            }
+        }
+    }
+    // restaurant list
+    .vendorList{
+        list-style-type: none;
+        padding:0 100px;
+        margin:0;
+        text-align: right;
+        color: $text_color;
+    }
+    .vendorList__link {
+        text-decoration: none;
+        color: unset;
+    }
+    // each restaurant card
+    .vendorList__card{
+        position: relative;
+        padding: $card_padding;
+        &::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 90%;
+            margin: auto;
+            height: 1px;
+            background-color: $card_border_color;
+        }
+    }
+    // total information of each restaurant
+    // image and title
+    .vendorList__card__total-info {
+        display: flex;
+        // restaurant image container
+        .image {
+            img {
+                width: $image_size;
+                border-radius: 5px;
+            }
+        }
+        // restaurant title container
+        .title {
+            margin-right: 16px;
+            h2 {
+                font-size: $title_size;
+            }
+        }
+        // restaurant description container
+        .description {
+            font-size: $text_small;
+            color: $text_color_light;
+        }
+        
+    }
+
+    // price and rating container
+    .vendorList__card__rate-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: $text_small;
+        .rate {
+            direction: ltr;
+        }
+        .rate__number {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: white;
+            background-color: $rate_back_color;
+        }
+        .rate__voteCount{
+            color: $text_color_light;
+        }
+    }
+
+}
+// loader that displays before vendor list
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    height: 100vh;
+    direction: rtl;
+    box-sizing: border-box;
+    img {
+        width: 400px;
+        max-width: calc(100% - 60px);
+        margin-bottom: 32px;
+    }
+    .loading {
+        font-family: inherit;
+        font-size: 20px;
+    }
+
+}
