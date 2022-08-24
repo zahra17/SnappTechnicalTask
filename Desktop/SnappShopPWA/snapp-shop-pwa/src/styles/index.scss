@@ -1,9 +1,0 @@
-@import 'partials/scroll';
-@import 'partials/page-transition';
-@import 'partials/variables';
-
-body {
-  overflow-x: hidden;
-  overflow-y: overlay;
-  transition: all 50ms;
-}
